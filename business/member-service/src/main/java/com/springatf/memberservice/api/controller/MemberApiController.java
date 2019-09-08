@@ -1,7 +1,10 @@
 package com.springatf.memberservice.api.controller;
 
-import com.springatf.domain.MemberDto;
-import com.springatf.memberservice.api.vo.MemberVo;
+import com.springatf.common.Idempotent.annotation.ExtApiIdempotent;
+import com.springatf.common.constant.IdepotentConstant;
+import com.springatf.common.domain.MemberDto;
+import com.springatf.common.respbase.BaseApiService;
+import com.springatf.common.respbase.ResponseResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/member")
-public class MemberApiController {
+public class MemberApiController extends BaseApiService {
 
     @RequestMapping(path = "getMemberInfo", method = RequestMethod.GET)
-    public MemberDto getMemberInfo(){
+    @ExtApiIdempotent(type= IdepotentConstant.EXT_API_HEAD)
+    public ResponseResult getMemberInfo(){
         MemberDto result = new MemberDto();
         result.setMemberName("JeffDu");
-        return result;
+        return buildSuccessWithData(result);
     }
 
 }

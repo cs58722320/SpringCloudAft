@@ -1,6 +1,6 @@
 package com.springatf.orderservice.api.controller;
 
-import com.springatf.domain.MemberDto;
+import com.springatf.common.domain.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

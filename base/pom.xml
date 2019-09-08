@@ -13,7 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>eureka-center</module>
+        <module>redis-server</module>
+        <module>zuul-gateway</module>
+        <module>zuul-gate</module>
     </modules>
-
 
 </project>
