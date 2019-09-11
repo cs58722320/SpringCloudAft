@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
@@ -33,16 +34,18 @@ public class MemberServerIdempotentAop extends DefaultIdempotentAop {
 
     @Override
     public HttpServletRequest getRequest() {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes attributes =
+                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         return request;
     }
 
     @Override
     public void response(ResponseResult result) throws IOException {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes attributes =
+                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse response = attributes.getResponse();
-        response.setHeader("Content-type", "application/json;charset=UTF-8");
+        response.setHeader("Content-type", MimeTypeUtils.APPLICATION_JSON_VALUE.concat(";charset=UTF-8"));
         PrintWriter writer = response.getWriter();
         try {
             JSON.toJSONString(result);
