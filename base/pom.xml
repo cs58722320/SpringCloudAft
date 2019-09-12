@@ -15,7 +15,7 @@
         <module>eureka-center</module>
         <module>redis-server</module>
         <module>zuul-gateway</module>
-        <module>zuul-gate</module>
+        <module>spring-cloud-gateway</module>
     </modules>
 
 </project>
