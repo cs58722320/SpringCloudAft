@@ -1,0 +1,22 @@
+server:
+  port: 9992
+
+spring:
+  application:
+    name: spring-cloud-gateway
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: memberserver
+#          uri: lb://member-service # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
+#          predicates:
+#            - Path=/member-api/**
+#          filters:
+#            - StripPrefix=1 # 表示在转发时去掉userapi
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9100/eureka/,http://${eureka.instance.hostname}:9200/eureka/

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SpringCloud.iml" filepath="$PROJECT_DIR$/SpringCloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/business.iml" filepath="$PROJECT_DIR$/business/business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/eureka-center/eureka-center.iml" filepath="$PROJECT_DIR$/base/eureka-center/eureka-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/member-service/member-service.iml" filepath="$PROJECT_DIR$/business/member-service/member-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/business/order-service/order-service.iml" filepath="$PROJECT_DIR$/business/order-service/order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/redis-server/redis-server.iml" filepath="$PROJECT_DIR$/base/redis-server/redis-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/spring-cloud-gateway/spring-cloud-gateway.iml" filepath="$PROJECT_DIR$/base/spring-cloud-gateway/spring-cloud-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdapi/thirdapi.iml" filepath="$PROJECT_DIR$/thirdapi/thirdapi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/base/zuul-gateway/zuul-gateway.iml" filepath="$PROJECT_DIR$/base/zuul-gateway/zuul-gateway.iml" />
+    </modules>
+  </component>
+</project>

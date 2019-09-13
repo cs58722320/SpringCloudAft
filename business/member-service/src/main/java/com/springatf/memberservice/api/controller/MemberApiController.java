@@ -36,4 +36,17 @@ public class MemberApiController extends BaseApiService {
         result.setMemberName("JeffDu");
         return buildSuccessWithData(result);
     }
+
+    @ApiOperation("获取会员相关信息_需要调用幂等令牌")
+    @RequestMapping(path = "getMemberInfo2", method = RequestMethod.GET)
+    public ResponseResult getMemberInfo2(){
+        MemberDto result = new MemberDto();
+        result.setMemberName("JeffDu");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return buildSuccessWithData(result);
+    }
 }
