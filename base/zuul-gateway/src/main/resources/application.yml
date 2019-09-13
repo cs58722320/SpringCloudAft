@@ -1,0 +1,63 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9100/eureka/,http://${eureka.instance.hostname}:9200/eureka/
+  instance:
+    hostname: 127.0.0.1
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+ribbon:
+  ReadTimeout: 6000
+server:
+  port: 9990
+spring:
+  application:
+    name: zuul-gateway
+  redis:
+    host: 192.168.1.11
+#    password: 135246
+    port: 6379
+    timeout: 1000
+    jedis:
+      pool:
+        max-active: 200
+        max-idle: 200
+        max-wait: 5000
+zuul:
+  prefix: /api
+  ratelimit:
+    enabled: true
+    repository: REDIS
+    policy-list:
+      member-api:
+        - limit: 10
+          refresh-interval: 60
+          type:
+            - origin
+            - url
+            - user
+  routes:
+    member-api:
+      path: /member-api/**
+      service-id: member-service
+  filter:
+    third:
+      paths: /api/,/third/
+  whitelist:
+    hosts:
+      - 192.168.1.11
+      - 192.168.0.2
+      - 192.168.0.3
+  blacklist:
+    hosts:
+      - 192.168.1.12
+  accessmode: 1 # 1: 白名单模式，2：黑名单模式，3：混合模式
+

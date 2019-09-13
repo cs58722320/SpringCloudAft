@@ -1,5 +1,6 @@
 package com.springatf.zuulgateway.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springfox.documentation.swagger.web.SwaggerResource;
@@ -17,7 +18,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @Primary
-@Component
+@Configuration
 public class DocumenttationConfig implements SwaggerResourcesProvider {
     /**
      * 开启Swagger2文档
