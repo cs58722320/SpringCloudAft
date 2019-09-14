@@ -13,6 +13,7 @@ import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 名称：<br>
@@ -60,8 +61,8 @@ public class BusinessInterfaceFilter extends ZuulFilter {
         // 获取上下文
         RequestContext currentContext = RequestContext.getCurrentContext();
         String uri = currentContext.getRequest().getRequestURI();
-        ignorePaths.parallelStream().filter(path -> uri.startsWith(""));
-        return ignorePaths.size() == 0;
+        List paths = ignorePaths.parallelStream().filter(path -> uri.startsWith(path)).collect(Collectors.toList());
+        return paths.size() == 0;
     }
 
     /**

@@ -4,29 +4,41 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.springatf.common.util.RequestUtil;
+import com.springatf.zuulgateway.filter.accessstrategy.AccessContext;
 import com.springatf.zuulgateway.properties.AccessControlBlackListProperties;
 import com.springatf.zuulgateway.properties.AccessControlWhiteListProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * 名称：<br>
- * 描述：<br>
+ * 名称：第三方接口过滤去<br>
+ * 描述：添加第三方接口黑白名单访问控制<br>
  *
  * @author JeffDu
  * @version 1.0
  * @since 1.0.0
  */
 @Slf4j
+@Component
 public class ThirdInterfaceFilter extends ZuulFilter{
 
     @Value("${zuul.filter.third.paths}")
-    List<String> ignorePaths = null;
+    List<String> ignorePaths;
+
+    @Value("${zuul.accessmode}")
+    String accessMode;
+
+    /**
+     * 访问控制上下文
+     */
+    AccessContext accessContext;
 
     /**
      * 访问控制白名单
@@ -41,6 +53,16 @@ public class ThirdInterfaceFilter extends ZuulFilter{
      */
     @Autowired
     private AccessControlBlackListProperties accessControlBlackListProperties;
+
+    /**
+     * 过滤器初始化
+     * 初始化访问控制上下文
+     */
+    @PostConstruct
+    public void filterInit() {
+        accessContext = new AccessContext(accessMode);
+    }
+
 
     /**
      * 过滤器的类型
@@ -70,12 +92,12 @@ public class ThirdInterfaceFilter extends ZuulFilter{
         // 获取上下文
         RequestContext currentContext = RequestContext.getCurrentContext();
         String uri = currentContext.getRequest().getRequestURI();
-        ignorePaths.parallelStream().filter(path -> uri.startsWith(""));
-        return ignorePaths.size() != 0;
+        List paths = ignorePaths.parallelStream().filter(path -> uri.startsWith(path)).collect(Collectors.toList());
+        return paths.size() != 0;
     }
 
     @Override
-    public Object run() throws ZuulException {
+    public Object run() {
         // 获取用户ip
         RequestContext currentContext = RequestContext.getCurrentContext();
         String currentIp = RequestUtil.getIpAddress(currentContext.getRequest());
@@ -93,15 +115,21 @@ public class ThirdInterfaceFilter extends ZuulFilter{
         // 当前ip是否包含在白名单中
         if (accessControlWhiteListProperties.getHosts().parallelStream()
                 .filter(host -> currentIp.equals(host)).findFirst().isPresent()) {
-            return isWhite = true;
+            isWhite = true;
         }
         // 当前ip是否包含在黑名单中
         if (accessControlBlackListProperties.getHosts().parallelStream()
                 .filter(host -> currentIp.equals(host)).findFirst().isPresent()) {
-            return isBlack = true;
+            isBlack = true;
         }
-
-
+        // 判断当前访问权限
+        if (!accessContext.isAvailable(isWhite, isBlack)) {
+            log.warn("{}，访问模式下获取访问权限失败", accessContext.getAccessMode());
+            // 不会继续执行，不回去调用服务接口，网关服务直接相应给客户端
+            currentContext.setSendZuulResponse(false);
+            currentContext.setResponseStatusCode(405);
+            currentContext.setResponseBody("can not get access control");
+        }
 
         return null;
     }
