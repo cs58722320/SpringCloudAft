@@ -92,6 +92,4 @@ public class AuthorizationServerConfig  extends AuthorizationServerConfigurerAda
             return accessToken;
         };
     }
-
-
 }

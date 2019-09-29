@@ -19,6 +19,11 @@
     </properties>
 
     <dependencies>
+        <!--redis组件用于限流-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--eureka 客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

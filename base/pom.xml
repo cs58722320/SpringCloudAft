@@ -16,6 +16,7 @@
         <module>redis-server</module>
         <module>zuul-gateway</module>
         <module>spring-cloud-gateway</module>
+        <module>auth-center</module>
     </modules>
 
 </project>
