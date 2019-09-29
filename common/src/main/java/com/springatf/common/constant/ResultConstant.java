@@ -31,4 +31,8 @@ public class ResultConstant {
      * 接口幂等错误
      */
     public final static Integer HTTP_RES_CODE_IDEMPOTENT_ERROR = 40120;
+
+    public final static Integer HTTP_RES_CODE_SERVICE_DOWN_ERROR = 40999;
+
+
 }

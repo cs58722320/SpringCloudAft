@@ -1,6 +1,5 @@
 package com.springatf.common.domain;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,10 +13,10 @@ import java.io.Serializable;
  * @since 1.0.0
  */
 @Data
-public class MemberDto implements Serializable{
-
+public class OrderDto implements Serializable {
     /**
-     * 会员姓名
+     * 订单编号
      */
-    private String memberName;
+    String orderId;
+
 }

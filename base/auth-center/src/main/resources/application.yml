@@ -1,0 +1,35 @@
+server:
+  port: 9991
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.1.10:3306/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+  application:
+    name: auth-center
+
+  redis:
+    host: 192.168.1.11
+#    password: 135246
+    port: 6379
+    timeout: 100
+    jedis:
+      pool:
+        max-active: 200
+        max-idle: 200
+        max-wait: 5000
+  main:
+    allow-bean-definition-overriding: true
+
+
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9100/eureka/,http://${eureka.instance.hostname}:9200/eureka/
