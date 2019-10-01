@@ -10,6 +10,7 @@ package com.springaft.authcenter.api.feign;
  */
 
 import com.springaft.admin.api.dto.UserInfo;
+import com.springaft.authcenter.api.feign.fallback.RemoteUserServiceFallbackImpl;
 import com.springaft.common.constant.ServiceNameConstants;
 import com.springaft.common.respbase.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @author lengleng
  * @date 2019/2/1
  */
-@FeignClient(ServiceNameConstants.ADMIN_SERVICE)
+@FeignClient(contextId = "remoteUserService", value = ServiceNameConstants.ADMIN_SERVICE, fallbackFactory = RemoteUserServiceFallbackImpl.class)
 @RequestMapping(path = "/user")
 public interface RemoteUserService {
 

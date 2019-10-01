@@ -24,6 +24,7 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 名称：授权中心配置Oath2<br>
@@ -85,13 +86,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //                .exceptionTranslator(new ());
     }
 
+    /**
+     * 将令牌存入Redis并定义其Key的格式
+     * @return
+     */
     @Bean
     public TokenStore tokenStore() {
         RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
-        tokenStore.setPrefix(SecurityConstants.PROJECT_PREFIX + SecurityConstants.OAUTH_PREFIX);
+        tokenStore.setPrefix(SecurityConstants.PROJECT_PREFIX + SecurityConstants.OAUTH_PREFIX + UUID.randomUUID() + ":");
         return tokenStore;
     }
 
+    /**
+     * 令牌增强，添加了一些公用的参数
+     * @return
+     */
     @Bean
     public TokenEnhancer tokenEnhancer() {
         return (accessToken, authentication) -> {

@@ -40,31 +40,31 @@ public class RedisTemplateConfig {
      * 使用Json序列化方式
      * @return
      */
-    @Bean
-    @Primary
-    public RedisTemplate<String, Object> redisTemplateJson() {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        // 初始化jackson对象
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        // 初始化RedisTemplate
-        redisTemplate.setKeySerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setHashKeySerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
-        redisTemplate.setConnectionFactory(factory);
-        return redisTemplate;
-    }
+//    @Bean
+//    @Primary
+//    public RedisTemplate<String, Object> redisTemplate() {
+//        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+//        // 初始化jackson对象
+//        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+//        ObjectMapper om = new ObjectMapper();
+//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+//        jackson2JsonRedisSerializer.setObjectMapper(om);
+//        // 初始化RedisTemplate
+//        redisTemplate.setKeySerializer(jackson2JsonRedisSerializer);
+//        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+//        redisTemplate.setHashKeySerializer(jackson2JsonRedisSerializer);
+//        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+//        redisTemplate.setConnectionFactory(factory);
+//        return redisTemplate;
+//    }
 
     /**
      * 使用JDK默认序列化方式
      * @return
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplateJdk() {
+    public RedisTemplate<String, Object> redisTemplate() {
         // 初始化RedisTemplate对象
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setKeySerializer(new StringRedisSerializer());

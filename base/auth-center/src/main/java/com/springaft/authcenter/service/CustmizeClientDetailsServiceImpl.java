@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 import javax.sql.DataSource;
 
 /**
- * 名称：<br>
+ * 名称：自定义Client的星系<br>
  * 描述：<br>
  *
  * @author JeffDu
@@ -18,6 +18,10 @@ import javax.sql.DataSource;
  */
 public class CustmizeClientDetailsServiceImpl extends JdbcClientDetailsService {
 
+    /**
+     * 数据源设置
+     * @param dataSource
+     */
     public CustmizeClientDetailsServiceImpl(DataSource dataSource) {
         super(dataSource);
     }

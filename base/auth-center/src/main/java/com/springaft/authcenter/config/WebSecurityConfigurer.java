@@ -43,7 +43,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) {
         http
                 .authorizeRequests()
+                // 获取token以及监控端口开放
                 .antMatchers("/actuator/**", "/token/**").permitAll()
+                // 这样写才能兼容授权码模式
                 .antMatchers("/**").fullyAuthenticated()
                 .and().csrf().disable();
     }

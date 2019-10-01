@@ -23,7 +23,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-
+##注册中心配置
 eureka:
   instance:
     hostname: 127.0.0.1
@@ -46,4 +46,4 @@ hystrix:
       exexution:
         isolation:
           thread:
-            timeoutInMilliseconds: 6000
+            timeoutInMilliseconds: 60000

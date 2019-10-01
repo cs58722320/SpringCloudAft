@@ -62,7 +62,7 @@ public class CustmizeUserDetailsServiceImpl  implements UserDetailsService {
     }
 
     /**
-     * 构建userdetails
+     * 构建userdetails对象
      *
      * @param result 用户信息
      * @return
