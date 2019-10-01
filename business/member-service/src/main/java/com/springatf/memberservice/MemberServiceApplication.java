@@ -1,7 +1,8 @@
 package com.springatf.memberservice;
 
-import com.springatf.common.redis.RedisPoolHolder;
-import com.springatf.common.exception.RedisPoolInitException;
+import com.springaft.common.annotation.CustomizeEnableResourceServer;
+import com.springaft.common.redis.RedisPoolHolder;
+import com.springaft.common.exception.RedisPoolInitException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -15,6 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableFeignClients
 @EnableCircuitBreaker // 开启断路器
 @SpringBootApplication
+@CustomizeEnableResourceServer
 public class MemberServiceApplication {
 
     public static void main(String[] args) throws RedisPoolInitException {

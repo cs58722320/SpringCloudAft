@@ -1,7 +1,7 @@
 package com.springatf.memberservice.rpc;
 
-import com.springatf.common.domain.OrderDto;
-import com.springatf.common.respbase.ResponseResult;
+import com.springaft.common.domain.OrderDto;
+import com.springaft.common.respbase.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

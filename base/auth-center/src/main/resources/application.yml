@@ -11,7 +11,7 @@ spring:
     name: auth-center
 
   redis:
-    host: 192.168.1.11
+    host: 192.168.1.21
 #    password: 135246
     port: 6379
     timeout: 100
@@ -24,7 +24,6 @@ spring:
     allow-bean-definition-overriding: true
 
 
-
 eureka:
   instance:
     hostname: 127.0.0.1
@@ -33,3 +32,18 @@ eureka:
     register-with-eureka: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:9100/eureka/,http://${eureka.instance.hostname}:9200/eureka/
+
+##开启hystrix断路器
+feign:
+  hystrix:
+    enabled: true
+
+##禁止服务超时时间
+##演示时间
+hystrix:
+  command:
+    default:
+      exexution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000

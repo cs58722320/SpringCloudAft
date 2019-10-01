@@ -1,8 +1,8 @@
 package com.springatf.memberservice.api.controller;
 
-import com.springatf.common.Idempotent.IdempotentHandler;
-import com.springatf.common.respbase.BaseApiService;
-import com.springatf.common.respbase.ResponseResult;
+import com.springaft.common.Idempotent.IdempotentHandler;
+import com.springaft.common.respbase.BaseApiService;
+import com.springaft.common.respbase.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;

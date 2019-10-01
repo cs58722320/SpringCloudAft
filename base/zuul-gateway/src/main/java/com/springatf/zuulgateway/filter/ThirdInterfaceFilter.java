@@ -3,7 +3,7 @@ package com.springatf.zuulgateway.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.springatf.common.util.RequestUtil;
+import com.springaft.common.util.RequestUtil;
 import com.springatf.zuulgateway.filter.accessstrategy.AccessContext;
 import com.springatf.zuulgateway.properties.AccessControlBlackListProperties;
 import com.springatf.zuulgateway.properties.AccessControlWhiteListProperties;

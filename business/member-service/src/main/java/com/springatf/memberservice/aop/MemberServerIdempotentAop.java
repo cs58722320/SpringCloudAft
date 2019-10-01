@@ -1,8 +1,8 @@
 package com.springatf.memberservice.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.springatf.common.Idempotent.aop.DefaultIdempotentAop;
-import com.springatf.common.respbase.ResponseResult;
+import com.springaft.common.Idempotent.aop.DefaultIdempotentAop;
+import com.springaft.common.respbase.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;

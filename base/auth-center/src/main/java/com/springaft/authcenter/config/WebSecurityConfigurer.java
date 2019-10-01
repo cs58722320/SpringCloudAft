@@ -1,7 +1,7 @@
 package com.springaft.authcenter.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springatf.common.security.handler.MobileLoginSuccessHandler;
+import com.springaft.common.security.handler.MobileLoginSuccessHandler;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +19,8 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
- * 名称：<br>
- * 描述：<br>
+ * 名称：Spring Security配置<br>
+ * 描述：Spring Security配置<br>
  *
  * @author JeffDu
  * @version 1.0
@@ -43,10 +43,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) {
         http
                 .authorizeRequests()
-                .antMatchers(
-                        "/actuator/**",
-                        "/token/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/actuator/**", "/token/**").permitAll()
+                .antMatchers("/**").fullyAuthenticated()
                 .and().csrf().disable();
     }
 
@@ -77,5 +75,4 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
-
 }

@@ -1,19 +1,11 @@
 package com.springatf.zuulgateway.filter;
 
-import com.alibaba.fastjson.JSON;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.springatf.common.constant.ResultConstant;
-import com.springatf.common.respbase.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.protocol.ResponseServer;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.stereotype.Component;
-import org.springframework.util.MimeTypeUtils;
 import org.springframework.util.ObjectUtils;
-import sun.security.provider.certpath.OCSPResponse;
 
 import javax.servlet.http.HttpServletRequest;
 

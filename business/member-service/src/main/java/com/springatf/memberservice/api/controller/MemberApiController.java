@@ -1,20 +1,15 @@
 package com.springatf.memberservice.api.controller;
 
-import com.arronlong.httpclientutil.HttpClientUtil;
-import com.arronlong.httpclientutil.common.HttpConfig;
-import com.arronlong.httpclientutil.common.HttpMethods;
-import com.arronlong.httpclientutil.exception.HttpProcessException;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.springatf.common.Idempotent.annotation.ExtApiIdempotent;
-import com.springatf.common.constant.IdepotentConstant;
-import com.springatf.common.domain.MemberDto;
-import com.springatf.common.domain.OrderDto;
-import com.springatf.common.respbase.BaseApiService;
-import com.springatf.common.respbase.ResponseResult;
+import com.springaft.common.domain.MemberDto;
+import com.springaft.common.domain.OrderDto;
+import com.springaft.common.respbase.BaseApiService;
+import com.springaft.common.respbase.ResponseResult;
 import com.springatf.memberservice.rpc.OrderApiFeign;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +31,9 @@ public class MemberApiController extends BaseApiService {
     @Autowired
     OrderApiFeign orderApiFeign;
 
+
     @ApiOperation("获取会员相关信息_需要调用幂等令牌")
+    @PreAuthorize("@pms.hasPermission('test')")
     @RequestMapping(path = "/getMemberInfo", method = RequestMethod.GET)
 //    @ExtApiIdempotent(type= IdepotentConstant.EXT_API_HEAD)
     public ResponseResult getMemberInfo() {

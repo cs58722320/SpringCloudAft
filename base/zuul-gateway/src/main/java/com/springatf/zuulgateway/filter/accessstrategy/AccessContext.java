@@ -1,6 +1,6 @@
 package com.springatf.zuulgateway.filter.accessstrategy;
 
-import com.springatf.common.constant.AccessConstant;
+import com.springaft.common.constant.AccessConstant;
 
 /**
  * 名称：接口访问控制上下文<br>

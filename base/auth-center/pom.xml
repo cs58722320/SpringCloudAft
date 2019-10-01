@@ -19,7 +19,7 @@
     </properties>
 
     <dependencies>
-        <!--redis组件用于限流-->
+        <!--redis组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -52,27 +52,16 @@
             <artifactId>spring-security-oauth2</artifactId>
             <version>${security.oauth.version}</version>
         </dependency>
-        <!--数据库-->
+        <!--rpc接口api-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.springaft</groupId>
+            <artifactId>service-apis</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--web 模块-->
+        <!--feign功能-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <!--排除tomcat依赖-->
-                <exclusion>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!--undertow容器-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
 

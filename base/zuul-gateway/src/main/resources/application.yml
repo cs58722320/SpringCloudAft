@@ -4,7 +4,7 @@ spring:
   application:
     name: zuul-gateway
   redis:
-    host: 192.168.1.11
+    host: 192.168.1.21
 #    password: 135246
     port: 6379
     timeout: 100
@@ -14,7 +14,7 @@ spring:
         max-idle: 200
         max-wait: 5000
 zuul:
-  prefix: /api
+#  prefix: /api
   ratelimit:
     enabled: true
     repository: REDIS
@@ -28,8 +28,9 @@ zuul:
             - user
   routes:
     member-api:
-      path: /member-api/**
+      path: /api/member-api/**
       service-id: member-service
+
   filter:
     third:
       paths: /api/,/third/

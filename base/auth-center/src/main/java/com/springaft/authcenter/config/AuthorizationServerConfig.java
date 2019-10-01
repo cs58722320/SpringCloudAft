@@ -1,8 +1,8 @@
 package com.springaft.authcenter.config;
 
-import com.springatf.common.constant.SecurityConstants;
-import com.springatf.common.security.entity.SysUser;
-import com.springatf.common.security.service.CustmizeClientDetailsServiceImpl;
+import com.springaft.authcenter.service.CustmizeClientDetailsServiceImpl;
+import com.springaft.common.constant.SecurityConstants;
+import com.springaft.common.security.entity.SysUser;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 名称：<br>
- * 描述：<br>
+ * 名称：授权中心配置Oath2<br>
+ * 描述：授权中心配置Oath2<br>
  *
  * @author JeffDu
  * @version 1.0
@@ -35,14 +35,18 @@ import java.util.Map;
  */
 @Configuration
 @AllArgsConstructor
-@EnableAuthorizationServer
-public class AuthorizationServerConfig  extends AuthorizationServerConfigurerAdapter {
+@EnableAuthorizationServer // 开启授权认证服务中心
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private final DataSource dataSource;
     private final UserDetailsService userDetailsService;
     private final AuthenticationManager authenticationManager;
     private final RedisConnectionFactory redisConnectionFactory;
 
+    /**
+     * 客户端认证配置
+     * @param clients
+     */
     @Override
     @SneakyThrows
     public void configure(ClientDetailsServiceConfigurer clients) {
@@ -52,13 +56,23 @@ public class AuthorizationServerConfig  extends AuthorizationServerConfigurerAda
         clients.withClientDetails(clientDetailsService);
     }
 
+    /**
+     * 认证服务器配置
+     * @param oauthServer
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer
+                // 主要是让/oauth/token支持client_id以及client_secret作登录认证
                 .allowFormAuthenticationForClients()
+                // 允许check_token端点
                 .checkTokenAccess("permitAll()");
     }
 
+    /**
+     * 服务器端点令牌相关配置
+     * @param endpoints
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
@@ -70,7 +84,6 @@ public class AuthorizationServerConfig  extends AuthorizationServerConfigurerAda
                 .reuseRefreshTokens(false);
 //                .exceptionTranslator(new ());
     }
-
 
     @Bean
     public TokenStore tokenStore() {

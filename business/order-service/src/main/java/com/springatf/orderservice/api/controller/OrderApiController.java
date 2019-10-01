@@ -1,6 +1,7 @@
 package com.springatf.orderservice.api.controller;
 
-import com.springatf.common.domain.MemberDto;
+import com.springaft.common.domain.MemberDto;
+import com.springaft.common.respbase.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +27,11 @@ public class OrderApiController {
     public void getMemberInfo(){
         MemberDto memberDto = restTemplate.getForObject("http://member-service/member/getMemberInfo", MemberDto.class);
         System.out.println(memberDto);
+    }
+
+    @RequestMapping(path = "/getOrderInfo", method = RequestMethod.GET)
+    public ResponseResult<String> getOrderInfo(){
+        return new ResponseResult<String>(123, "123", "123");
     }
 
 
