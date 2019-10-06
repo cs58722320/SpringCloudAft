@@ -1,0 +1,39 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9100/eureka/,http://${eureka.instance.hostname}:9200/eureka/
+  instance:
+    hostname: 127.0.0.1
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+ignore:
+  urls:
+    - /actuator/**
+    - /v2/api-docs
+server:
+  port: 8000
+spring:
+  application:
+    name: member-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://192.168.1.10:3306/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+  security:
+    oauth2:
+      resource:
+        clientId: pig
+        clientSecret: pig
+        tokenInfoUrl: http://auth-center/oauth/check_token

@@ -76,25 +76,25 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.6.1</version>
         </dependency>
-        <!--common组件-->
-        <dependency>
-            <groupId>com.springaft</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
         <!--hutool-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
-        <!--数据库-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
     </dependencies>
+
+    <!--maven私服下载配置-->
+    <repositories>
+        <repository>
+            <id>aft</id>
+            <url>http://192.168.1.8:8081/repository/aft-snapshot/</url>
+        </repository>
+        <repository>
+            <id>aft</id>
+            <url>http://192.168.1.8:8081/repository/aft-relaease/</url>
+        </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -107,6 +107,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <!--maven私服上传配置-->
+    <distributionManagement>
+        <repository>
+            <id>aft</id>
+            <url>http://192.168.1.8:8081/repository/aft-snapshot/</url>
+        </repository>
+    </distributionManagement>
 
 
 </project>

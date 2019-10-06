@@ -33,7 +33,7 @@ public class MemberApiController extends BaseApiService {
 
 
     @ApiOperation("获取会员相关信息_需要调用幂等令牌")
-    @PreAuthorize("@pms.hasPermission('test')")
+    @PreAuthorize("@pms.hasPermission('sys_user_edit')")
     @RequestMapping(path = "/getMemberInfo", method = RequestMethod.GET)
 //    @ExtApiIdempotent(type= IdepotentConstant.EXT_API_HEAD)
     public ResponseResult getMemberInfo() {

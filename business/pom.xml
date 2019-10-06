@@ -17,6 +17,7 @@
         <module>admin-service</module>
         <module>sample-service</module>
         <module>service-apis</module>
+        <module>wechat-service</module>
     </modules>
 
     <dependencies>
@@ -47,6 +48,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!--数据库-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
         <!--mybatisplus使用同时要加上者三个依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -63,6 +69,12 @@
             <artifactId>mybatis-plus-extension</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
+        <!--rpc接口api-->
+<!--        <dependency>-->
+<!--            <groupId>com.springaft</groupId>-->
+<!--            <artifactId>service-apis</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
     </dependencies>
 
 </project>

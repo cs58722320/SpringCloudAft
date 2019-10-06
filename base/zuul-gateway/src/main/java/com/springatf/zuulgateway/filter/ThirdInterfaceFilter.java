@@ -93,7 +93,8 @@ public class ThirdInterfaceFilter extends ZuulFilter{
         RequestContext currentContext = RequestContext.getCurrentContext();
         String uri = currentContext.getRequest().getRequestURI();
         List paths = ignorePaths.parallelStream().filter(path -> uri.startsWith(path)).collect(Collectors.toList());
-        return paths.size() != 0;
+        // 不拦截Swagger访问网址
+        return paths.size() != 0 && !uri.contains("/v2/api-docs");
     }
 
     @Override

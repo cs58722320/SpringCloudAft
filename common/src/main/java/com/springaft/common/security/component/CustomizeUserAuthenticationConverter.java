@@ -62,9 +62,9 @@ public class CustomizeUserAuthenticationConverter implements UserAuthenticationC
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(Map<String, ?> map) {
-//        Object authorities = map.get(AUTHORITIES);
-        // TODO 暂时写死
-        Object authorities = "test";
+        Object authorities = map.get(AUTHORITIES);
+//        // TODO 暂时写死
+//        Object authorities = "test";
         if (authorities instanceof String) {
             return AuthorityUtils.commaSeparatedStringToAuthorityList((String) authorities);
         }

@@ -216,10 +216,10 @@ INSERT INTO `sys_role_menu` VALUES ('1', '1000'), ('1', '1100'), ('1', '1101'), 
 COMMIT;
 
 -- ----------------------------
---  Table structure for `sys_user`
+--  Table structure for `sys_user_entity`
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user` (
+DROP TABLE IF EXISTS `sys_user_entity`;
+CREATE TABLE `sys_user_entity` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
   `username` varchar(64) COLLATE utf8mb4_bin NOT NULL COMMENT '用户名',
   `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
@@ -240,10 +240,10 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 -- ----------------------------
---  Records of `sys_user`
+--  Records of `sys_user_entity`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_user` VALUES ('1', 'admin', '$2a$10$RpFJjxYiXdEsAGnWp/8fsOetMuOON96Ntk/Ym2M/RKRyU0GZseaDC', null, '17034642999', '', '1', '2018-04-20 07:15:18', '2019-01-31 14:29:07', '0', '0', 'o_0FT0uyg_H1vVy2H0JpSwlVGhWQ', null);
+INSERT INTO `sys_user_entity` VALUES ('1', 'admin', '$2a$10$RpFJjxYiXdEsAGnWp/8fsOetMuOON96Ntk/Ym2M/RKRyU0GZseaDC', null, '17034642999', '', '1', '2018-04-20 07:15:18', '2019-01-31 14:29:07', '0', '0', 'o_0FT0uyg_H1vVy2H0JpSwlVGhWQ', null);
 COMMIT;
 
 -- ----------------------------

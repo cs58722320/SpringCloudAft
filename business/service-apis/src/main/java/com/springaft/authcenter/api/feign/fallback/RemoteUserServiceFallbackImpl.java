@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
  * @since 1.0.0
  */
 @Slf4j
-@Component
 public class RemoteUserServiceFallbackImpl extends BaseApiService implements RemoteUserService {
 
     @Setter

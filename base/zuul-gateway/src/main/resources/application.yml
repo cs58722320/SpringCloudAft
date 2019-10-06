@@ -28,7 +28,7 @@ zuul:
             - user
   routes:
     member-api:
-      path: /api/member-api/**
+      path: /member-api/**
       service-id: member-service
 
   filter:
