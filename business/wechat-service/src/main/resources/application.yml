@@ -1,0 +1,35 @@
+## 设置日志等级
+logging:
+  level:
+    org.springframework.web: INFO
+    com.github.binarywang.demo.wx.mp: DEBUG
+    me.chanjar.weixin: DEBUG
+
+## 微信配置
+wx:
+  mp:
+    configs:
+      ## 一个公众号的APPID
+      - appId: wx493108cd975d237e
+      ## 密钥
+        secret: 6f4fcf77ff095fb189654a28fecf7f72
+      ## 令牌
+        token: jeffdu
+
+## 服务器配置
+server:
+  port: 80
+  servlet:
+    context-path: /wechat
+
+## spring boot相关配置
+spring:
+  application:
+    name: wechat-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://192.168.1.10:3306/pig?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+
